@@ -12,7 +12,7 @@ function updateSearchParams(query: string): void {
   window.history.pushState({}, "", urlData.toString());
 }
 
-export default function Home({ searchParams }: Props) {
+export default function SearchPage({ searchParams }: Props) {
   return (
     <section>
       <div className="bg-gradient-image h-20"></div>
