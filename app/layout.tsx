@@ -9,7 +9,7 @@ const inter = Be_Vietnam_Pro({
 });
 
 export const metadata: Metadata = {
-  title: "Unplash Collection",
+  title: "Unsplash Collection",
   description: "Unplash collection service",
 };
 
