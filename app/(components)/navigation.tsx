@@ -25,9 +25,9 @@ export const Navigation = () => {
         <Link
           key={link.id}
           href={link.to}
-          className={`px-5 py-2 ${
+          className={`px-5 py-2 rounded-md hover:bg-cc-gray-100 dark:hover:bg-slate-800 ${
             pathname === link.to
-              ? "bg-cc-gray-100 dark:bg-slate-800 text-black dark:text-white rounded-md"
+              ? "bg-cc-gray-100 dark:bg-slate-800 text-black dark:text-white"
               : "text-black dark:text-cc-gray-100"
           }`}
         >
