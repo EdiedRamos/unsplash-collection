@@ -50,14 +50,14 @@ export function Search({ onSubmit, initialValue }: Props) {
           event.preventDefault();
           handleSubmit();
         }}
-        className={`flex gap-4 px-4 bg-white dark:bg-slate-800 w-full md:w-[600px] mx-auto rounded-lg border-2 ${
+        className={`flex gap-4 px-4 transition-colors bg-white dark:bg-slate-800 hover:bg-gray-200 dark:hover:bg-slate-700 w-full md:w-[600px] mx-auto rounded-lg border-2 ${
           error.length > 0 ? "border-red-500" : "dark:border-slate-600"
         }`}
       >
         <input
           type="search"
           placeholder="Enter your keywords..."
-          className="w-full bg-inherit text-black dark:text-white outline-none h-14"
+          className="w-full bg-inherit text-black dark:text-white outline-none h-14 placeholder:text-gray-500 dark:placeholder:text-white"
           onChange={(event) => setValue(event.target.value)}
           value={value}
         />
