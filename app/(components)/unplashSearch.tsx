@@ -1,6 +1,9 @@
-import { SearchIcon } from "../(icons)";
+"use client";
+import { useRouter } from "next/navigation";
+import { Search } from "./search";
 
 export function UnplashSearch() {
+  const router = useRouter();
   return (
     <div className="mt-14 pt-40 h-[80vh] bg-none lg:bg-hero-image bg-no-repeat bg-contain bg-center">
       <h2 className="text-black dark:text-white text-cs-300 font-semibold text-center">
@@ -9,14 +12,7 @@ export function UnplashSearch() {
       <p className="text-black dark:text-slate-300 text-center pt-2">
         Search high-resolution images from Unsplash
       </p>
-      <div className="flex gap-4 p-4 bg-white dark:bg-slate-800 w-full md:w-[600px] mt-6 mx-auto rounded-lg border dark:border-slate-600">
-        <input
-          type="search"
-          placeholder="Enter your keywords..."
-          className="w-full bg-inherit text-black dark:text-white outline-none"
-        />
-        <SearchIcon className="text-gray-400 dark:text-cc-gray-100" />
-      </div>
+      <Search onSubmit={(value) => router.push(`/search?query=${value}`)} />
     </div>
   );
 }
