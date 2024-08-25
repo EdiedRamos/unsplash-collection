@@ -12,7 +12,7 @@ export const SearchIcon = ({ className = "" }: Props) => (
     xmlns="http://www.w3.org/2000/svg"
     fill="none"
   >
-    <circle cx="11" cy="11" r="7" stroke-width="2" />
-    <path d="M20 20L17 17" stroke-width="2" stroke-linecap="round" />
+    <circle cx="11" cy="11" r="7" strokeWidth="2" />
+    <path d="M20 20L17 17" strokeWidth="2" strokeLinecap="round" />
   </svg>
 );
