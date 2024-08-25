@@ -12,6 +12,7 @@ const config: Config = {
         "cc-dark": "#121826",
         "cc-white": "#FFF",
         "cc-gray-100": "#E5E7EB",
+        "cc-gray-200": "#6C727F",
         "cc-gray-100-op": "#E5E7EBCC",
       },
       fontSize: {
