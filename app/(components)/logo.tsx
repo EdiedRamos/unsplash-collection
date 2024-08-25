@@ -1,6 +1,6 @@
 export const Logo = () => (
   <svg
-    className="text-red-500x"
+    className="text-black dark:text-white"
     width="118"
     height="24"
     viewBox="0 0 118 24"
