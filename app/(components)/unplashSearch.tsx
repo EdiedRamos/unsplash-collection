@@ -12,7 +12,9 @@ export function UnplashSearch() {
       <p className="text-black dark:text-slate-300 text-center pt-2">
         Search high-resolution images from Unsplash
       </p>
-      <Search onSubmit={(value) => router.push(`/search?query=${value}`)} />
+      <div className="mt-6">
+        <Search onSubmit={(value) => router.push(`/search?query=${value}`)} />
+      </div>
     </div>
   );
 }

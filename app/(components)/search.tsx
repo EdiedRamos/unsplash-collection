@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { SearchIcon } from "../(icons)";
 
 interface Props {
+  initialValue?: string;
   onSubmit: (value: string) => void;
 }
 
@@ -11,8 +12,8 @@ function validateValue(value: string): void {
   if (value.trim().length === 0) throw new Error("Empty search is not allowed");
 }
 
-function useSearch({ onSubmit }: Props) {
-  const [value, setValue] = useState<string>("");
+function useSearch({ onSubmit, initialValue = "" }: Props) {
+  const [value, setValue] = useState<string>(initialValue);
   const [error, setError] = useState<string>("");
 
   const handleSubmit = () => {
@@ -36,8 +37,11 @@ function useSearch({ onSubmit }: Props) {
   };
 }
 
-export function Search({ onSubmit }: Props) {
-  const { value, error, setValue, handleSubmit } = useSearch({ onSubmit });
+export function Search({ onSubmit, initialValue }: Props) {
+  const { value, error, setValue, handleSubmit } = useSearch({
+    onSubmit,
+    initialValue,
+  });
 
   return (
     <div>
@@ -46,7 +50,7 @@ export function Search({ onSubmit }: Props) {
           event.preventDefault();
           handleSubmit();
         }}
-        className={`flex gap-4 p-4 bg-white dark:bg-slate-800 w-full md:w-[600px] mt-6 mx-auto rounded-lg border-2 ${
+        className={`flex gap-4 p-4 bg-white dark:bg-slate-800 w-full md:w-[600px] mx-auto rounded-lg border-2 ${
           error.length > 0 ? "border-red-500" : "dark:border-slate-600"
         }`}
       >
