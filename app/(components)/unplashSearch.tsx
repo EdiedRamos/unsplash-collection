@@ -2,7 +2,7 @@ import { SearchIcon } from "../(icons)";
 
 export function UnplashSearch() {
   return (
-    <div className="mt-52">
+    <div className="mt-14 pt-40 h-[80vh] bg-none lg:bg-hero-image bg-no-repeat bg-contain bg-center">
       <h2 className="text-black dark:text-white text-cs-300 font-semibold text-center">
         Search
       </h2>
