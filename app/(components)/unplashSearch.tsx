@@ -6,7 +6,7 @@ export function UnplashSearch() {
       <h2 className="text-black dark:text-white text-cs-300 font-semibold text-center">
         Search
       </h2>
-      <p className="text-black dark:text-cc-gray-200 text-center pt-2">
+      <p className="text-black dark:text-slate-300 text-center pt-2">
         Search high-resolution images from Unsplash
       </p>
       <div className="flex gap-4 p-4 bg-white dark:bg-slate-800 w-full md:w-[600px] mt-6 mx-auto rounded-lg border dark:border-slate-600">
