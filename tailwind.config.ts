@@ -24,6 +24,7 @@ const config: Config = {
       backgroundImage: {
         "hero-image": "url('/hero-image.png')",
         "gradient-image": "url('/gradient.png')",
+        "gradient-bg": "url('/gradiend-bg.svg')",
       },
     },
   },
