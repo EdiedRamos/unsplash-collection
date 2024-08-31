@@ -30,6 +30,27 @@ interface PhotoResponse {
   user: User;
 }
 
+function CustomDate(date: string) {
+  const MONTHS = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+  const dateObj = new Date(date);
+  return `${
+    MONTHS[dateObj.getMonth()]
+  } ${dateObj.getDate()}, ${dateObj.getFullYear()}`;
+}
+
 async function fetchPhotoInformatio(photoId: string): Promise<PhotoResponse> {
   const response = await fetch(
     `https://api.unsplash.com/photos/${photoId}?client_id=_OHJPjYgHv6JdtpzVHMZ8NBrCrCm_zVQunR3VOzWv0I`
@@ -59,7 +80,7 @@ export default async function PhotoPage(props: Props) {
           </p>
         </div>
         <p className="text-black dark:text-white mt-5">
-          {photoInformation.created_at}
+          Published on {CustomDate(photoInformation.created_at)}
         </p>
         <div className="flex flex-wrap gap-5 mt-5">
           <Button>Add to Collection</Button>
