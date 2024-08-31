@@ -1,4 +1,5 @@
 import { Button } from "@/app/(ui)";
+import { Controls } from "./(components)";
 
 interface Props {
   params: { PhotoId: string };
@@ -30,7 +31,7 @@ interface PhotoResponse {
   user: User;
 }
 
-function CustomDate(date: string) {
+function customDate(date: string) {
   const MONTHS = [
     "January",
     "February",
@@ -80,12 +81,12 @@ export default async function PhotoPage(props: Props) {
           </p>
         </div>
         <p className="text-black dark:text-white mt-5">
-          Published on {CustomDate(photoInformation.created_at)}
+          Published on {customDate(photoInformation.created_at)}
         </p>
-        <div className="flex flex-wrap gap-5 mt-5">
-          <Button>Add to Collection</Button>
-          <Button>Download</Button>
-        </div>
+        <Controls
+          photoUrl={photoInformation.urls.full}
+          photoName={photoInformation.slug}
+        />
       </div>
     </section>
   );
