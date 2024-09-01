@@ -1,9 +1,13 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { Search } from "./search";
+import { useRegister } from "../(hooks)";
 
 export function UnplashSearch() {
+  useRegister();
+
   const router = useRouter();
+
   return (
     <div className="mt-14 pt-40 h-[80vh] bg-none lg:bg-hero-image bg-no-repeat bg-contain bg-center">
       <h2 className="text-black dark:text-white text-cs-300 font-semibold text-center">
