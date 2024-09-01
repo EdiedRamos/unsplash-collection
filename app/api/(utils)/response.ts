@@ -1,18 +1,14 @@
+import type { ResponseProps } from "@/app/(models)";
 import { NextResponse } from "next/server";
 
-interface ResponseProps {
-  message: string;
-  content?: unknown;
-  error?: unknown;
-}
-
 export const CustomResponse = {
-  OK: (props: ResponseProps) => NextResponse.json(props, { status: 200 }),
-  NOT_FOUND: (props: ResponseProps) =>
+  OK: <T>(props: ResponseProps<T>) => NextResponse.json(props, { status: 200 }),
+  NOT_FOUND: <T>(props: ResponseProps<T>) =>
     NextResponse.json(props, { status: 404 }),
-  INTERNAL_SERVER_ERROR: (props: ResponseProps) =>
+  INTERNAL_SERVER_ERROR: <T>(props: ResponseProps<T>) =>
     NextResponse.json(props, { status: 500 }),
-  CREATED: (props: ResponseProps) => NextResponse.json(props, { status: 201 }),
-  BAD_REQUEST: (props: ResponseProps) =>
+  CREATED: <T>(props: ResponseProps<T>) =>
+    NextResponse.json(props, { status: 201 }),
+  BAD_REQUEST: <T>(props: ResponseProps<T>) =>
     NextResponse.json(props, { status: 400 }),
 };

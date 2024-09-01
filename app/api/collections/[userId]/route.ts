@@ -1,6 +1,7 @@
 import { firebaseDB } from "@/app/(libs)/firestore.admin";
 import { NextRequest } from "next/server";
 import { CustomResponse, generateDefaultCollection } from "../../(utils)";
+import { Collections } from "@/app/(models)";
 
 const COLLECTION = "collections";
 
@@ -29,7 +30,7 @@ export async function GET(_: NextRequest, { params }: CollectionParams) {
     if (data.exists)
       return CustomResponse.OK({
         message: "Collections found",
-        content: data.data(),
+        content: data.data() as Collections,
       });
     return CustomResponse.NOT_FOUND({ message: "Collections not found" });
   } catch (err) {
@@ -55,7 +56,7 @@ export async function POST(_: NextRequest, { params }: CollectionParams) {
     const data = await createDefaultCollection(params.userId);
     return CustomResponse.CREATED({
       message: "Default collection registered",
-      content: data,
+      content: data as Collections,
     });
   } catch (err) {
     let errorMessage = "unknown";

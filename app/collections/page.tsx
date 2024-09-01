@@ -1,4 +1,5 @@
 import { GradientTitle } from "../(components)";
+import { CollectionGrid } from "./(components)";
 
 export default function CollectionPage() {
   return (
@@ -12,6 +13,7 @@ export default function CollectionPage() {
         </a>
         .
       </p>
+      <CollectionGrid />
     </div>
   );
 }
