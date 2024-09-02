@@ -1,3 +1,5 @@
+import axios from "axios";
+
 interface Urls {
   raw: string;
   full: string;
@@ -25,12 +27,16 @@ interface PhotoResponse {
   alt_description: string;
 }
 
+interface ApiPhotoResponse {
+  message: string;
+  content: PhotoResponse;
+}
+
 export async function fetchPhotoInformation(
   photoId: string
 ): Promise<PhotoResponse> {
-  const response = await fetch(
-    `https://api.unsplash.com/photos/${photoId}?client_id=_OHJPjYgHv6JdtpzVHMZ8NBrCrCm_zVQunR3VOzWv0I`
+  const data = await axios<ApiPhotoResponse>(
+    `${process.env.DOMAIN}/api/photo/${photoId}`
   );
-  const data = (await response.json()) as PhotoResponse;
-  return data;
+  return data.data.content;
 }

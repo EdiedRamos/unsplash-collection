@@ -25,6 +25,11 @@ interface SearchResponse {
   results: SearchItem[];
 }
 
+interface ApiSearchResponse {
+  message: string;
+  content: SearchResponse;
+}
+
 function updateSearchParams(query: string): void {
   const urlData = new URL(window.location.href);
   urlData.searchParams.set("query", query);
@@ -32,11 +37,9 @@ function updateSearchParams(query: string): void {
 }
 
 async function search(query: string): Promise<SearchItem[]> {
-  const response = await fetch(
-    `https://api.unsplash.com/search/photos?client_id=${process.env.NEXT_PUBLIC_UNSPLASH_CLIENT_ID}&query=${query}`
-  );
-  const data = (await response.json()) as SearchResponse;
-  if (Array.isArray(data.results)) return data.results;
+  const response = await fetch(`api/search/${query}`);
+  const data = (await response.json()) as ApiSearchResponse;
+  if (Array.isArray(data.content.results)) return data.content.results;
   return [];
 }
 
