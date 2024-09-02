@@ -57,7 +57,7 @@ export default function CollectionPage(props: Props) {
       </p>
       <div className="columns-1 md:columns-2 lg:columns-3 mt-12 gap-6 mx-8">
         {collection.photos.map((info) => (
-          <Link key={info.id} href={`photo/${info.id}`}>
+          <Link key={info.id} href={`/photo/${info.id}`}>
             <img
               className="w-full h-auto object-cover mb-6 rounded-md"
               src={info.urls.regular}
