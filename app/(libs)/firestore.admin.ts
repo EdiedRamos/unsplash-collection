@@ -17,7 +17,6 @@ class FirebaseAdmin {
   }
 
   private constructor() {
-    console.log("check it out", process.env.FIRESTORE_PROJECT_ID);
     if (admin.apps.length) {
       this.firebaseAdmin = admin.app();
       return;

@@ -9,12 +9,12 @@ interface Props {
 }
 
 export function Collections({ photoId }: Props) {
-  const { collections } = useCollection();
+  const { collections, handleRemoveImage } = useCollection();
 
   const [belongCollections, setBelongCollections] = useState<Collection[]>();
 
   useEffect(() => {
-    if (!collections) return;
+    if (!collections || !Array.isArray(collections.collections)) return;
     const belong = collections.collections.filter((collection) =>
       collection.photos.some((photo) => photo.id === photoId)
     );
@@ -34,7 +34,12 @@ export function Collections({ photoId }: Props) {
       </h3>
       <div className="mt-2 flex flex-wrap flex-col gap-3">
         {belongCollections.map((collection) => (
-          <CollectionControl key={collection.id} collection={collection} />
+          <CollectionControl
+            key={collection.id}
+            collection={collection}
+            handleRemoveImage={handleRemoveImage}
+            photoId={photoId}
+          />
         ))}
       </div>
     </section>

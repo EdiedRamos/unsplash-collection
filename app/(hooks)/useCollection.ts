@@ -23,10 +23,28 @@ export function useCollection() {
         axios
           .post<CollectionResponse>(`/api/collections/${userId}`)
           .then((response) => setCollections(response.data.content))
+          .catch(() => {})
       );
   }, [router]);
 
+  const handleRemoveImage = (collectionId: string, photoId: string) => {
+    const userId = localStorage.getItem("user_id");
+    if (!userId) {
+      router.replace("/");
+      return;
+    }
+
+    axios
+      .patch<CollectionResponse>(`/api/collections/${userId}`, {
+        collectionId,
+        imageId: photoId,
+      })
+      .then((response) => setCollections(response.data.content))
+      .catch(() => {});
+  };
+
   return {
     collections,
+    handleRemoveImage,
   };
 }

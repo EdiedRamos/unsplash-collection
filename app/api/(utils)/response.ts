@@ -11,4 +11,5 @@ export const CustomResponse = {
     NextResponse.json(props, { status: 201 }),
   BAD_REQUEST: <T>(props: ResponseProps<T>) =>
     NextResponse.json(props, { status: 400 }),
+  NO_CONTENT: () => new Response(null, { status: 204 }),
 };

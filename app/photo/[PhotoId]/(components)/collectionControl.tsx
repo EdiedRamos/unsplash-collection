@@ -7,9 +7,15 @@ import { useState } from "react";
 
 interface Props {
   collection: Collection;
+  photoId: string;
+  handleRemoveImage: (collectionId: string, photoId: string) => void;
 }
 
-export function CollectionControl({ collection }: Props) {
+export function CollectionControl({
+  collection,
+  handleRemoveImage,
+  photoId,
+}: Props) {
   const [renderDelete, setRenderDelete] = useState<boolean>(false);
 
   return (
@@ -40,7 +46,7 @@ export function CollectionControl({ collection }: Props) {
             className="text-black dark:text-white"
             onClick={(event) => {
               event.preventDefault();
-              alert("in progress");
+              handleRemoveImage(collection.id, photoId);
             }}
           >
             - Remove

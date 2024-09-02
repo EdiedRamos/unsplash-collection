@@ -23,6 +23,34 @@ async function getCollectionByUserId(userId: string) {
   return collections;
 }
 
+async function removeImageFromCollection(
+  userId: string,
+  collectionId: string,
+  imageId: string
+) {
+  try {
+    const collectionsRef = firebaseDB.collection(COLLECTION).doc(userId);
+    const collectionData = await collectionsRef.get();
+    if (!collectionData.exists) return null;
+    const data = collectionData.data() as Collections;
+    const result = data.collections.map((collection) => {
+      if (collection.id !== collectionId) return collection;
+      return {
+        ...collection,
+        photos: collection.photos.filter((photo) => photo.id !== imageId),
+      };
+    });
+    await collectionsRef.set({
+      collections: result,
+    });
+    return {
+      collections: result,
+    };
+  } catch {
+    return null;
+  }
+}
+
 // Controllers
 export async function GET(_: NextRequest, { params }: CollectionParams) {
   try {
@@ -66,4 +94,32 @@ export async function POST(_: NextRequest, { params }: CollectionParams) {
       error: errorMessage,
     });
   }
+}
+
+// Delete image from collection
+export async function PATCH(
+  request: NextRequest,
+  { params }: CollectionParams
+) {
+  const body = await request.json();
+
+  if (!body.collectionId || !body.imageId)
+    return CustomResponse.BAD_REQUEST({
+      message: "collectionId and imageId are required",
+    });
+
+  const removeResult = await removeImageFromCollection(
+    params.userId,
+    body.collectionId,
+    body.imageId
+  );
+  if (!removeResult)
+    return CustomResponse.BAD_REQUEST({
+      message: "Coult not remove image from collection",
+    });
+
+  return CustomResponse.OK({
+    message: "Image removed from collection",
+    content: removeResult,
+  });
 }
