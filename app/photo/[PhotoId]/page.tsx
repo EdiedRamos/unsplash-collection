@@ -1,4 +1,6 @@
+import { ToastContainer } from "react-toastify";
 import { Collections, Controls } from "./(components)";
+import "react-toastify/dist/ReactToastify.css";
 
 interface Props {
   params: { PhotoId: string };
@@ -92,6 +94,7 @@ export default async function PhotoPage(props: Props) {
         />
         <Collections photoId={props.params.PhotoId} />
       </div>
+      <ToastContainer />
     </section>
   );
 }

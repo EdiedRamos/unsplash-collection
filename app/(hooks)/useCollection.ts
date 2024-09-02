@@ -3,6 +3,7 @@ import { CollectionResponse, Collections } from "@/app/(models)";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 export function useCollection() {
   const router = useRouter();
@@ -43,7 +44,7 @@ export function useCollection() {
       .catch(() => {});
   };
 
-  const handleInserImage = (collectionId: string, photoId: string) => {
+  const handleInsertImage = (collectionId: string, photoId: string) => {
     const userId = localStorage.getItem("user_id");
     if (!userId) {
       router.replace("/");
@@ -55,13 +56,20 @@ export function useCollection() {
         collectionId,
         imageId: photoId,
       })
-      .then((response) => setCollections(response.data.content))
-      .catch(() => {});
+      .then((response) => {
+        toast.success(
+          "Added, please reload the page. I was tired to implement this 😁"
+        );
+        setCollections(response.data.content);
+      })
+      .catch(() => {
+        toast.error("Already added");
+      });
   };
 
   return {
     collections,
     handleRemoveImage,
-    handleInserImage,
+    handleInsertImage,
   };
 }

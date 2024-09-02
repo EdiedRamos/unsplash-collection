@@ -28,7 +28,7 @@ export function Controls({
   photoUrl: string;
   photoName: string;
 }) {
-  const { collections, handleInserImage } = useCollection();
+  const { collections, handleInsertImage } = useCollection();
 
   if (!collections?.collections) return null;
 
@@ -36,7 +36,7 @@ export function Controls({
     <div className="flex flex-wrap gap-5 mt-5">
       <Button
         onClick={() =>
-          handleInserImage(collections.collections[0]?.id ?? "", photoId)
+          handleInsertImage(collections.collections[0]?.id ?? "", photoId)
         }
       >
         Add to Collection

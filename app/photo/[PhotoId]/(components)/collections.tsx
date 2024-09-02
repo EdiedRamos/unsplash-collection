@@ -9,7 +9,7 @@ interface Props {
 }
 
 export function Collections({ photoId }: Props) {
-  const { collections, handleRemoveImage, handleInserImage } = useCollection();
+  const { collections, handleRemoveImage } = useCollection();
 
   const [belongCollections, setBelongCollections] = useState<Collection[]>();
 
