@@ -7,7 +7,17 @@ interface Props {
 const commonStyles = "w-full h-full object-cover text-black dark:text-white";
 
 export function PreviewGrid({ photos }: Props) {
-  if (photos.length === 0) return null;
+  if (photos.length === 0) {
+    return (
+      <img
+        src={
+          "https://images.unsplash.com/photo-1589287707312-213624549c88?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2NDY4OTN8MHwxfGFsbHx8fHx8fHx8fDE3MjUyNTUyMjB8&ixlib=rb-4.0.3&q=80&w=400"
+        }
+        alt={"black and white graffiti on wall"}
+        className={commonStyles}
+      />
+    );
+  }
 
   if (photos.length === 1) {
     return (
