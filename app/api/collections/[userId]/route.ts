@@ -2,7 +2,7 @@ import { firebaseDB } from "@/app/(libs)/firestore.admin";
 import { NextRequest } from "next/server";
 import { CustomResponse, generateDefaultCollection } from "../../(utils)";
 import { Collections, Photo } from "@/app/(models)";
-import { fetchPhotoInformation } from "@/app/photo/[PhotoId]/page";
+import { fetchPhotoInformation } from "@/app/(libs)/fetch";
 
 const COLLECTION = "collections";
 

@@ -1,36 +1,10 @@
 import { ToastContainer } from "react-toastify";
 import { Collections, Controls } from "./(components)";
 import "react-toastify/dist/ReactToastify.css";
+import { fetchPhotoInformation } from "@/app/(libs)/fetch";
 
 interface Props {
   params: { PhotoId: string };
-}
-
-interface Urls {
-  raw: string;
-  full: string;
-  regular: string;
-  small: string;
-  thumb: string;
-  small_s3: string;
-}
-
-interface User {
-  name: string;
-  profile_image: {
-    small: string;
-    medium: string;
-    large: string;
-  };
-}
-
-interface PhotoResponse {
-  id: string;
-  slug: string;
-  created_at: string;
-  urls: Urls;
-  user: User;
-  alt_description: string;
 }
 
 function customDate(date: string) {
@@ -52,16 +26,6 @@ function customDate(date: string) {
   return `${
     MONTHS[dateObj.getMonth()]
   } ${dateObj.getDate()}, ${dateObj.getFullYear()}`;
-}
-
-export async function fetchPhotoInformation(
-  photoId: string
-): Promise<PhotoResponse> {
-  const response = await fetch(
-    `https://api.unsplash.com/photos/${photoId}?client_id=_OHJPjYgHv6JdtpzVHMZ8NBrCrCm_zVQunR3VOzWv0I`
-  );
-  const data = (await response.json()) as PhotoResponse;
-  return data;
 }
 
 export default async function PhotoPage(props: Props) {
