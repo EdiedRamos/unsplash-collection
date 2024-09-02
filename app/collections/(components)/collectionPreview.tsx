@@ -1,5 +1,6 @@
 import { Collection } from "@/app/(models)";
 import { PreviewGrid } from "./previewGrid";
+import Link from "next/link";
 
 interface Props {
   collection: Collection;
@@ -11,7 +12,10 @@ function getQuantityLabel(length: number) {
 
 export function CollectionPreview({ collection }: Props) {
   return (
-    <div className="w-full max-w-96">
+    <Link
+      href={`/collection/${collection.id}`}
+      className="w-full max-w-96 hover:cursor-pointer"
+    >
       <div className="rounded-md overflow-hidden h-72">
         <PreviewGrid photos={collection.photos} />
       </div>
@@ -21,6 +25,6 @@ export function CollectionPreview({ collection }: Props) {
       <p className="text-black dark:text-white mt-1">
         {collection.photos.length} {getQuantityLabel(collection.photos.length)}
       </p>
-    </div>
+    </Link>
   );
 }
