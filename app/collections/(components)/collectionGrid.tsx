@@ -3,6 +3,7 @@
 import { CollectionResponse, Collections } from "@/app/(models)";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { CollectionPreview } from "./collectionPreview";
 
 export function CollectionGrid() {
   const [collections, setCollections] = useState<Collections>();
@@ -22,23 +23,9 @@ export function CollectionGrid() {
   }, []);
 
   return (
-    <section className="flex flex-wrap gap-8 mt-14 mx-14">
+    <section className="flex flex-wrap gap-8 mt-14 md:mx-14">
       {collections?.collections.map((collection) => (
-        <div className="w-full max-w-96" key={collection.id}>
-          <div className="rounded-md overflow-hidden h-72">
-            <img
-              src={collection.photos[0].urls.small}
-              alt=""
-              className="w-full h-full object-cover"
-            />
-          </div>
-          <p className="text-black dark:text-white font-medium mt-4 text-xl">
-            {collection.name}
-          </p>
-          <p className="text-black dark:text-white mt-1">
-            {collection.photos.length} photos
-          </p>
-        </div>
+        <CollectionPreview key={collection.id} collection={collection} />
       ))}
     </section>
   );
