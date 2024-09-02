@@ -1,5 +1,6 @@
 "use client";
 
+import { useCollection } from "@/app/(hooks)";
 import { Button } from "@/app/(ui)";
 
 function setToHttps(url: string): string {
@@ -19,15 +20,27 @@ async function download(imageUrl: string, imageName: string) {
 }
 
 export function Controls({
+  photoId,
   photoUrl,
   photoName,
 }: {
+  photoId: string;
   photoUrl: string;
   photoName: string;
 }) {
+  const { collections, handleInserImage } = useCollection();
+
+  if (!collections?.collections) return null;
+
   return (
     <div className="flex flex-wrap gap-5 mt-5">
-      <Button>Add to Collection</Button>
+      <Button
+        onClick={() =>
+          handleInserImage(collections.collections[0]?.id ?? "", photoId)
+        }
+      >
+        Add to Collection
+      </Button>
       <Button onClick={() => download(photoUrl, photoName)}>Download</Button>
     </div>
   );

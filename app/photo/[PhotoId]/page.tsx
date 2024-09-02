@@ -28,6 +28,7 @@ interface PhotoResponse {
   created_at: string;
   urls: Urls;
   user: User;
+  alt_description: string;
 }
 
 function customDate(date: string) {
@@ -51,7 +52,9 @@ function customDate(date: string) {
   } ${dateObj.getDate()}, ${dateObj.getFullYear()}`;
 }
 
-async function fetchPhotoInformatio(photoId: string): Promise<PhotoResponse> {
+export async function fetchPhotoInformation(
+  photoId: string
+): Promise<PhotoResponse> {
   const response = await fetch(
     `https://api.unsplash.com/photos/${photoId}?client_id=_OHJPjYgHv6JdtpzVHMZ8NBrCrCm_zVQunR3VOzWv0I`
   );
@@ -60,7 +63,7 @@ async function fetchPhotoInformatio(photoId: string): Promise<PhotoResponse> {
 }
 
 export default async function PhotoPage(props: Props) {
-  const photoInformation = await fetchPhotoInformatio(props.params.PhotoId);
+  const photoInformation = await fetchPhotoInformation(props.params.PhotoId);
   return (
     <section className="grid grid-cols-1 lg:grid-cols-2 mt-12 gap-10 mx-8">
       <img
@@ -83,6 +86,7 @@ export default async function PhotoPage(props: Props) {
           Published on {customDate(photoInformation.created_at)}
         </p>
         <Controls
+          photoId={props.params.PhotoId}
           photoUrl={photoInformation.urls.full}
           photoName={photoInformation.slug}
         />
