@@ -2,7 +2,8 @@ import { firebaseDB } from "@/app/(libs)/firestore.admin";
 import { NextRequest } from "next/server";
 import { CustomResponse, generateDefaultCollection } from "../../(utils)";
 import { Collections, Photo } from "@/app/(models)";
-import { fetchPhotoInformation } from "@/app/(libs)/fetch";
+import { ApiPhotoResponse } from "@/app/(libs)/fetch";
+import axios from "axios";
 
 const COLLECTION = "collections";
 
@@ -58,7 +59,12 @@ async function inserImageToCollection(
   imageId: string
 ) {
   try {
-    const photoInfo = await fetchPhotoInformation(imageId);
+    const request = await axios.get<ApiPhotoResponse>(
+      `${process.env.DOMAIN}/api/photo/${imageId}`
+    );
+
+    const photoInfo = request.data.content;
+
     const newPhoto: Photo = {
       id: photoInfo.id,
       alt_description: photoInfo.alt_description,

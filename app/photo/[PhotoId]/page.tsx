@@ -1,7 +1,8 @@
 import { ToastContainer } from "react-toastify";
 import { Collections, Controls } from "./(components)";
 import "react-toastify/dist/ReactToastify.css";
-import { fetchPhotoInformation } from "@/app/(libs)/fetch";
+import { ApiPhotoResponse } from "@/app/(libs)/fetch";
+import axios from "axios";
 
 interface Props {
   params: { PhotoId: string };
@@ -29,7 +30,11 @@ function customDate(date: string) {
 }
 
 export default async function PhotoPage(props: Props) {
-  const photoInformation = await fetchPhotoInformation(props.params.PhotoId);
+  const request = await axios.get<ApiPhotoResponse>(
+    `${process.env.DOMAIN}/api/photo/${props.params.PhotoId}`
+  );
+  const photoInformation = request.data.content;
+
   return (
     <section className="grid grid-cols-1 lg:grid-cols-2 mt-12 gap-10 mx-8">
       <img

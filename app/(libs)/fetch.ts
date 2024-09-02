@@ -27,16 +27,7 @@ interface PhotoResponse {
   alt_description: string;
 }
 
-interface ApiPhotoResponse {
+export interface ApiPhotoResponse {
   message: string;
   content: PhotoResponse;
-}
-
-export async function fetchPhotoInformation(
-  photoId: string
-): Promise<PhotoResponse> {
-  const data = await axios<ApiPhotoResponse>(
-    `${process.env.DOMAIN}/api/photo/${photoId}`
-  );
-  return data.data.content;
 }
