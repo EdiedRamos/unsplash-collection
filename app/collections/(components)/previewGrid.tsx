@@ -7,6 +7,8 @@ interface Props {
 const commonStyles = "w-full h-full object-cover text-black dark:text-white";
 
 export function PreviewGrid({ photos }: Props) {
+  if (photos.length === 0) return null;
+
   if (photos.length === 1) {
     return (
       <img
