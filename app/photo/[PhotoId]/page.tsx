@@ -1,4 +1,3 @@
-import { Button } from "@/app/(ui)";
 import { Collections, Controls } from "./(components)";
 
 interface Props {
@@ -87,7 +86,7 @@ export default async function PhotoPage(props: Props) {
           photoUrl={photoInformation.urls.full}
           photoName={photoInformation.slug}
         />
-        <Collections />
+        <Collections photoId={props.params.PhotoId} />
       </div>
     </section>
   );
