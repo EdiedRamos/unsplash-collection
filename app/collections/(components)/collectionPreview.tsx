@@ -1,13 +1,10 @@
 import { Collection } from "@/app/(models)";
 import { PreviewGrid } from "./previewGrid";
 import Link from "next/link";
+import { getQuantityLabel } from "@/app/api/(utils)/labels";
 
 interface Props {
   collection: Collection;
-}
-
-function getQuantityLabel(length: number) {
-  return `photo${length > 1 ? "s" : ""}`;
 }
 
 export function CollectionPreview({ collection }: Props) {
@@ -23,7 +20,7 @@ export function CollectionPreview({ collection }: Props) {
         {collection.name}
       </p>
       <p className="text-black dark:text-white mt-1">
-        {collection.photos.length} {getQuantityLabel(collection.photos.length)}
+        {getQuantityLabel(collection.photos.length, "photo", "photos")}
       </p>
     </Link>
   );
